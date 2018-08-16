@@ -103,6 +103,7 @@
     [_tableView reloadData];
     [self addSubview:_tableView];
 }
+
 - (void)setName:(NSString *)cityName
 {
     _cityName = cityName;
@@ -242,8 +243,8 @@
         cell.tag = indexPath.row;
         cell.backgroundColor = [UIColor clearColor];
         
-        NSArray *littleLabelArray = [NSArray arrayWithObjects:@"日出",@"日落",@"降雨概率",@"湿度",@"风速",@"体感温度",@"降水量",@"气压",@"能见度",@"紫外线指数", nil];
-        NSArray *bigLabelArray = [NSArray  arrayWithObjects:self.oneDayDictionary[@"sr"],_oneDayDictionary[@"ss"],_oneDayDictionary[@"pop"],_oneDayDictionary[@"hum"],[_oneDayDictionary[@"wind_dir"] stringByAppendingString: _dataMuatbleArray[0][@"daily_forecast"][0][@"wind_spd"]],_dataMuatbleArray[0][@"now"][@"fl"],_oneDayDictionary[@"pcpn"],_oneDayDictionary[@"pres"],_oneDayDictionary[@"vis"],_oneDayDictionary[@"uv_index"],nil];
+        NSArray *littleLabelArray = [NSArray arrayWithObjects:@"日出",@"日落",@"降雨概率",@"湿度",@"风速（公里/小时）",@"体感温度",@"降水量",@"气压",@"能见度(公里)",@"紫外线指数", nil];
+        NSArray *bigLabelArray = [NSArray  arrayWithObjects:self.oneDayDictionary[@"sr"],_oneDayDictionary[@"ss"],[_oneDayDictionary[@"pop"] stringByAppendingString:@"%"],[_oneDayDictionary[@"hum"]  stringByAppendingString:@"%"],[_oneDayDictionary[@"wind_dir"] stringByAppendingString:_dataMuatbleArray[0][@"daily_forecast"][0][@"wind_spd"]],_dataMuatbleArray[0][@"now"][@"fl"],_oneDayDictionary[@"pcpn"],_oneDayDictionary[@"pres"],_oneDayDictionary[@"vis"],_oneDayDictionary[@"uv_index"],nil];
         cell.littleLabel.text  = littleLabelArray[indexPath.row];
         if(bigLabelArray && bigLabelArray.count > 0 && ![bigLabelArray isKindOfClass:[NSNull class]]){
             cell.bigLabel.text = bigLabelArray[indexPath.row];

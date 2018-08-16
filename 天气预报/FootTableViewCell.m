@@ -26,7 +26,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    _littleLabel.frame = CGRectMake(15, 3, 100, 30);
+    _littleLabel.frame = CGRectMake(15, 3, 200, 30);
     _littleLabel.textColor = [UIColor lightGrayColor];
     
     _bigLabel.frame = CGRectMake(15, 30, 200, 50);
