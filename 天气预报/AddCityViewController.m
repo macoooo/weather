@@ -10,7 +10,7 @@
 #import "AddCityTableViewCell.h"
 #import "SearchCityViewController.h"
 
-@interface AddCityViewController ()<UITableViewDelegate,UITableViewDataSource,SearchCityViewControllerDelegate>
+@interface AddCityViewController ()<UITableViewDelegate,UITableViewDataSource,SearchCityViewControllerDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray *addNewCityMutableArray;
 @property (nonatomic, copy)NSString *cityString;
@@ -43,6 +43,7 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
     tapGesture.numberOfTapsRequired  = 1;
     tapGesture.numberOfTouchesRequired = 1;
+    tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
     
     _temperatureMutableArray = [NSMutableArray array];
@@ -148,6 +149,7 @@
         if(_temperatureMutableArray && [_temperatureMutableArray count] > 0 && ![_timeMutableArray isKindOfClass:[NSNull class]]){
             //cell.temperatureLabel.text = _temperatureMutableArray[indexPath.row];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     else{
@@ -161,8 +163,20 @@
         [addButton addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
         
         [cell1.contentView  addSubview:addButton];
+        cell1  .selectionStyle = UITableViewCellSelectionStyleNone;
         return cell1;
     }
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSUInteger select = indexPath.row;
+    if([self.delegate respondsToSelector:@selector(changeCityArray:)]) {
+                [self.delegate changeCityArray:self.addNewCityMutableArray];
+    }
+    if([self.delegate respondsToSelector:@selector(changeSelect:)]){
+        [self.delegate changeSelect:select];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)addClick
 {
@@ -178,6 +192,15 @@
     }
     NSLog(@"%@", self.addNewCityMutableArray);
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        //判断如果点击的是tableView的cell，就把手势给关闭了
+        return NO;//关闭手势
+    }
+    //否则手势存在
+    return YES;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

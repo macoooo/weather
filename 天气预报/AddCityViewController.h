@@ -10,6 +10,7 @@
 
 @protocol AddCityViewControllerDelegate <NSObject>
 - (void)changeCityArray:(NSMutableArray *)newCityArray;
+- (void)changeSelect:(NSUInteger)select;
 @end
 
 @interface AddCityViewController : UIViewController

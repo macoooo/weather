@@ -58,9 +58,7 @@
     NSLog(@"%lddfg",self.addNewCityMutableArray.count);
     [self.view addSubview:view];
     
-   // if(_citySearchBar.text.length > 1){
-        //[self creatPost];
-        //[self searchFromTableView:_citySearchBar.text];
+   
         [self loadTableView];
     //}
     // Do any additional setup after loading the view.
@@ -181,7 +179,6 @@
 {
     [self creatPost];
     [self searchFromTableView:searchText];
-    //[self creatPost];
 }
 - (void)searchFromTableView:(NSString *)text
 {
@@ -214,6 +211,12 @@
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    if(!self.oldDataArray){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"抱歉,您可能网络没有连接" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
+        [alert addAction:deleteAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
     if(![self checkExist:_citySearchBar.text]){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"抱歉,您搜索的城市不存在" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];

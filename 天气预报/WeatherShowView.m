@@ -177,7 +177,7 @@
         if(cell2 == nil){
             cell2 = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
             UIScrollView *smallScrollerView = [[UIScrollView alloc] init];
-            smallScrollerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 160);
+            smallScrollerView.frame = CGRectMake(5, 0, [UIScreen mainScreen].bounds.size.width, 160);
             smallScrollerView.pagingEnabled = YES;
             smallScrollerView.scrollEnabled = YES;
             smallScrollerView.contentSize = CGSizeMake(80 * 24,160);
@@ -199,6 +199,7 @@
             [cell2.contentView addSubview:smallScrollerView];
         }
         cell2.backgroundColor = [UIColor clearColor];
+        cell2.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell2;
     }
     if(indexPath.section == 2){
@@ -220,6 +221,7 @@
         if(imageArray && imageArray.count > 0 && ![imageArray isKindOfClass:[NSNull class]]){
             cell.weatherImageView.image = [UIImage imageNamed:imageArray[indexPath.row]];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     if(indexPath.section == 3){
@@ -233,7 +235,7 @@
             _label.textColor = [UIColor whiteColor];
             _label.numberOfLines = 0;
             [cell.contentView addSubview:_label];
-    
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
         return cell;
     }
@@ -249,6 +251,7 @@
         if(bigLabelArray && bigLabelArray.count > 0 && ![bigLabelArray isKindOfClass:[NSNull class]]){
             cell.bigLabel.text = bigLabelArray[indexPath.row];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
 }
