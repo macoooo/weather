@@ -14,10 +14,15 @@
 @interface WeatherShowView : UIView<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray *dataMuatbleArray;
-@property (nonatomic, strong)NSDictionary *secondDictionary;
+@property (nonatomic, copy)NSDictionary *secondDictionary;
 @property (nonatomic, strong)NSMutableArray *dataSecondArray;
-@property (nonatomic, strong)NSDictionary *oneDayDictionary;
+@property (nonatomic, copy)NSDictionary *oneDayDictionary;
 @property (nonatomic, copy)NSString *cityName;
+@property (nonatomic, strong)NSMutableArray *timeMutableArray;
+@property (nonatomic, strong)NSMutableArray *weatherMutableArray;
+@property (nonatomic, strong)NSMutableArray *imgMutableArray;
+@property (nonatomic, strong)UILabel *label;
+
 
 - (void)creatpost;
 - (void)creatTableView;

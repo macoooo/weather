@@ -24,18 +24,19 @@
 
 - (void)changeCityArray:(NSMutableArray *)newCityArray
 {
-    _addNewCityMutableArray = [NSMutableArray array];
-    self.addNewCityMutableArray = newCityArray;
-    if(_addNewCityMutableArray.count == 0){
+    if(newCityArray.count == 0){
         return;
     }
-    //[self loadScrollerView];
-    [_cityNameMutableArray addObjectsFromArray:_addNewCityMutableArray];
+    NSLog(@"%@qqqqqqq",newCityArray);
+    [_cityNameMutableArray addObjectsFromArray:newCityArray];
+    NSLog(@"%@kkkkkkk",_cityNameMutableArray);
     NSUInteger count = self.cityNameMutableArray.count;
     self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width*self.cityNameMutableArray.count, [UIScreen mainScreen].bounds.size.height - 50);
     
-    WeatherShowView *weather = [[WeatherShowView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width*(count-1), 0, [UIScreen mainScreen].bounds.size.width , self.scrollView.frame.size.height - 50 ) andCityName:self.cityNameMutableArray[count-1]];
-    [self.scrollView addSubview:weather];
+    for(int i = 3;i < _cityNameMutableArray.count;i++){
+        WeatherShowView *weather = [[WeatherShowView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width*i, 0, [UIScreen mainScreen].bounds.size.width , self.scrollView.frame.size.height - 50 ) andCityName:self.cityNameMutableArray[i]];
+        [self.scrollView addSubview:weather];
+    }
     
     [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width*(count-1), 0) animated:NO];
     
@@ -89,6 +90,7 @@
     _scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * count, [UIScreen mainScreen].bounds.size.height - 50);
     _scrollView.bounces = YES;
     _scrollView.delegate = self;
+    _scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:_scrollView];
     
     for(int i = 0;i < count;i++){

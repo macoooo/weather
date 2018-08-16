@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol SearchCityViewControllerDelegate <NSObject>
-- (void)changeCityArray:(NSMutableArray *)newCityArray;
+- (void)changeCityArray:(NSString *)newCityString;
 @end
 
 @interface SearchCityViewController : UIViewController

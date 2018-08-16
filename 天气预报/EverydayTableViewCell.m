@@ -17,14 +17,15 @@
         self.eyerydayLabel = [[UILabel alloc] init];
         [self.contentView addSubview:_eyerydayLabel];
         
-        self.weatherImageView = [[UIImageView alloc] init];
-        [self.contentView addSubview:_weatherImageView];
-        
         self.highTemperatureLabel = [[UILabel alloc] init];
         [self.contentView addSubview:_highTemperatureLabel];
         
         self.lowtemperatureLabel = [[UILabel alloc] init];
         [self.contentView addSubview:_lowtemperatureLabel];
+        
+        self.weatherImageView = [[UIImageView alloc] init];
+        [self.contentView addSubview:_weatherImageView];
+        
     }
     return self;
 }
@@ -41,9 +42,9 @@
     
     _lowtemperatureLabel.frame = CGRectMake(370, 2, 30, 50);
     _lowtemperatureLabel.font = [UIFont systemFontOfSize:20];
-    _lowtemperatureLabel.textColor = [UIColor whiteColor];
+    _lowtemperatureLabel.textColor = [UIColor lightGrayColor];
     
-    _weatherImageView.frame = CGRectMake(180, 2, 50, 50);
+    _weatherImageView.frame = CGRectMake(180, 4, 35, 35);
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

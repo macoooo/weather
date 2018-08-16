@@ -31,7 +31,7 @@
     _littleLabel.frame = CGRectMake(15, 3, 150, 30);
     _littleLabel.textColor = [UIColor lightGrayColor];
     
-    _bigLabel.frame = CGRectMake(15, 30, 100, 50);
+    _bigLabel.frame = CGRectMake(15, 30, 250, 50);
     _bigLabel.textColor = [UIColor whiteColor];
     _bigLabel.font = [UIFont systemFontOfSize:35];
     

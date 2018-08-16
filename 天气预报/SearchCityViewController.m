@@ -111,6 +111,15 @@
     }
     return YES;
 }
+- (BOOL)checkExist:(NSString *)str
+{
+    for(int i = 0;i < _oldDataArray.count;i++){
+        if([str isEqualToString:_oldDataArray[i]]){
+            return YES;
+        }
+    }
+    return NO;
+}
 - (void)loadTableView
 {
     _tableView= [[UITableView alloc] initWithFrame:CGRectMake(20, 100, 320, 600) style:UITableViewStyleGrouped];
@@ -205,22 +214,30 @@
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    _addNewCityMutableArray = [NSMutableArray array];
-    if([self checkEqual:_citySearchBar.text]){
-        [_addNewCityMutableArray addObject:_citySearchBar.text];
-        NSLog(@"%@",_addNewCityMutableArray);
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else{
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"抱歉，已经有这个城市的天气了" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    if(![self checkExist:_citySearchBar.text]){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"抱歉,您搜索的城市不存在" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
         [alert addAction:deleteAction];
         [self presentViewController:alert animated:YES completion:nil];
+    }
+    else{
+        if([self checkEqual:_citySearchBar.text]){
+            //[_addNewCityMutableArray addObject:_citySearchBar.text];
+            if([self.delegate respondsToSelector:@selector(changeCityArray:)]) {
+                [self.delegate changeCityArray:self.citySearchBar.text];
+            }
+            NSLog(@"%@",_addNewCityMutableArray);
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"抱歉，已经有这个城市的天气了" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
+            [alert addAction:deleteAction];
+            [self presentViewController:alert animated:YES completion:nil];
 
+        }
     }
-    if([self.delegate respondsToSelector:@selector(changeCityArray:)]) {
-        [self.delegate changeCityArray:self.addNewCityMutableArray];
-    }
+    [self resignFirstResponder];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

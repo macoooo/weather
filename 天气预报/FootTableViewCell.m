@@ -20,8 +20,6 @@
         self.bigLabel = [[UILabel alloc] init];
         [self.contentView addSubview:_bigLabel];
         
-        self.windLabel = [[UILabel alloc] init];
-        [self.contentView addSubview:_windLabel];
     }
     return self;
 }
@@ -35,9 +33,6 @@
     _bigLabel.textColor = [UIColor whiteColor];
     _bigLabel.font = [UIFont systemFontOfSize:35];
     
-    _windLabel.frame = CGRectMake(160, 30, 100, 50);
-    _windLabel.font = [UIFont systemFontOfSize:35];
-    _windLabel.textColor = [UIColor whiteColor];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

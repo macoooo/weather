@@ -12,5 +12,4 @@
 
 @property (nonatomic, strong)UILabel *littleLabel;
 @property (nonatomic, strong)UILabel *bigLabel;
-@property (nonatomic, strong)UILabel *windLabel;
 @end

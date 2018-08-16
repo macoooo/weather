@@ -22,11 +22,14 @@
 @implementation AddCityViewController
 
 
-- (void)changeCityArray:(NSMutableArray *)newCityArray
+- (void)changeCityArray:(NSMutableArray *)newCityString
 {
-    _addNewCityMutableArray = [NSMutableArray array];
-    self.addNewCityMutableArray = newCityArray;
-    [_cityMutableArray addObjectsFromArray:_addNewCityMutableArray];
+    if(!_addNewCityMutableArray){
+        _addNewCityMutableArray = [NSMutableArray array];
+    }
+    [self.addNewCityMutableArray addObject:newCityString];
+    [_cityMutableArray addObject:newCityString];
+    NSLog(@"%@hgjjhgj",_addNewCityMutableArray);
     NSLog(@"%@",_cityMutableArray);
     [_tableView reloadData];
 }
@@ -173,6 +176,7 @@
     if([self.delegate respondsToSelector:@selector(changeCityArray:)]) {
         [self.delegate changeCityArray:self.addNewCityMutableArray];
     }
+    NSLog(@"%@", self.addNewCityMutableArray);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning {
