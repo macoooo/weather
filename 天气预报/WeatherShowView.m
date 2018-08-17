@@ -15,6 +15,9 @@
     if(self = [super initWithFrame:(CGRect)frame]){
         self.cityName = cityName;
         [self creatpost];
+        UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        backgroundImageView.image = [UIImage imageNamed:@""];
+        [self addSubview:backgroundImageView];
         //[self creatplease];
         [self creatTableView];
     }

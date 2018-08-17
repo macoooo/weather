@@ -38,7 +38,8 @@
 }
 - (void)layoutSubviews{
     [super layoutSubviews];
-    _cityLabel.frame = CGRectMake(175, 50, 150, 50);
+    _cityLabel.frame = CGRectMake(60, 50, 300, 50);
+    _cityLabel.textAlignment = NSTextAlignmentCenter;
     _cityLabel.font = [UIFont systemFontOfSize:35];
     _cityLabel.textColor = [UIColor whiteColor];
     

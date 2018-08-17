@@ -29,6 +29,7 @@
     }
     [self.addNewCityMutableArray addObject:newCityString];
     [_cityMutableArray addObject:newCityString];
+    NSLog(@"%ldxxxxx",_addNewCityMutableArray.count);
     NSLog(@"%@hgjjhgj",_addNewCityMutableArray);
     NSLog(@"%@",_cityMutableArray);
     [_tableView reloadData];
@@ -163,7 +164,7 @@
         [addButton addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
         
         [cell1.contentView  addSubview:addButton];
-        cell1  .selectionStyle = UITableViewCellSelectionStyleNone;
+        cell1.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell1;
     }
 }
@@ -190,7 +191,7 @@
     if([self.delegate respondsToSelector:@selector(changeCityArray:)]) {
         [self.delegate changeCityArray:self.addNewCityMutableArray];
     }
-    NSLog(@"%@", self.addNewCityMutableArray);
+    NSLog(@"%@yyy", self.addNewCityMutableArray);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {

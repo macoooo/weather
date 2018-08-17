@@ -45,7 +45,7 @@
     NSUInteger count = self.cityNameMutableArray.count;
     self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width*self.cityNameMutableArray.count, [UIScreen mainScreen].bounds.size.height - 50);
     
-    for(int i = ((int)_cityNameMutableArray.count + (int)newCityArray.count - 2 );i < _cityNameMutableArray.count;i++){
+    for(int i = (int)_cityNameMutableArray.count - (int)newCityArray.count;i < _cityNameMutableArray.count;i++){
         WeatherShowView *weather = [[WeatherShowView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width*i, 0, [UIScreen mainScreen].bounds.size.width , self.scrollView.frame.size.height - 50 ) andCityName:self.cityNameMutableArray[i]];
         [self.scrollView addSubview:weather];
     }
